@@ -2,7 +2,6 @@ package com.alexduzi.user_request_sb.reader;
 
 import com.alexduzi.user_request_sb.domain.ResponseUser;
 import com.alexduzi.user_request_sb.dto.UserDTO;
-import com.alexduzi.user_request_sb.job.JobConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.annotation.AfterChunk;
@@ -19,7 +18,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Configuration
 public class FetchUserDataReaderConfig implements ItemReader<UserDTO> {
@@ -28,7 +28,7 @@ public class FetchUserDataReaderConfig implements ItemReader<UserDTO> {
 
     private final String BASE_URL = "http://localhost:8081";
 
-    private RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate = new RestTemplate();
 
     private int page = 0;
 
