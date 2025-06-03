@@ -8,6 +8,7 @@ import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +22,7 @@ public class FetchUserDataAndStoreDBStepConfig {
     @Value("${chunkSize}")
     private int chunkSize;
 
-    public FetchUserDataAndStoreDBStepConfig(PlatformTransactionManager transactionManager) {
+    public FetchUserDataAndStoreDBStepConfig(@Qualifier("transactionManagerApp") PlatformTransactionManager transactionManager) {
         this.transactionManager = transactionManager;
     }
 
